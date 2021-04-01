@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#9c0202">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+	<title>Admin Terminal :: Articles</title>
+    <style>
+        .title{
+            padding-top: 10px;
+        }
+        .golde{
+            color: goldenrod;
+            text-decoration: none;
+        }
+        .section{
+            margin-top: 0;
+            margin-bottom: 0;
+            margin-left: auto;
+            margin-right: auto;
+        }
+        .pagiination{
+        list-style-type: none;
+        }
+    </style>
+</head>
+<body>
+<%- include('../shared/adminheader.ejs') %>
+<br/>
+<div class="container">
+<div class="row">
+<div class='text-center'>
+<a class="golde" href="/api/admin/logout">Log Out</a> ||| <a class="golde" href="/api/admin/new">Add New Article</a>
+</div>
+<h1 class="text-center title">List of Articles</h1>
+<div class="text-center">
+<br/>
+<% articles.map(article =>{ %>
+	<% if(article.training === true) { %>
+        <p>This is a true fitness article</p>
+    <% } %>  
+	<p><%= article.title %></p>
+	<p class="text-truncate"><%= article.description %></p>
+	<a href="/api/admin/articles/article/<%= article._id %>">Update Article</a>
+    <hr/>
+<% }) %>
+</div>
+</div>
+</div>
+<br/>
+<br/>
+
+<br/>
+<div class="text-center">
+<% if (pages > 0) { %>
+		<ul class="pagiination list-inline">
+                    <% if (current == 0) { %>
+                        <li class="list-inline-item disabled"><a>First</a></li>
+                    <% } else { %>
+                        <li class="list-inline-item"><a href="/api/admin/api/articles">First</a></li>
+                    <% } %>
+                    <% var i = (Number(current) > 5 ? Number(current) - 4 : 1) %>
+                    <% if (i !== 1) { %>
+                        <li class="list-inline-item disabled"><a>...</a></li>
+                    <% } %>
+                    <% for (; i <= (Number(current) + 4) && i <= pages; i++) { %>
+                        <% if (i == current) { %>
+                            <li class="list-inline-item active"><a><%= i %></a></li>
+                        <% } else { %>
+                            <li class="list-inline-item"><a href="/api/admin/api/articles/<%= i %>"><%= i %></a></li>
+                        <% } %>
+                        <% if (i == Number(current) + 4 && i < pages) { %>
+                            <li class="list-inline-item disabled"><a>...</a></li>
+                        <% } %>
+                    <% } %>
+                    <% if (current == pages) { %>
+                        <li class="list-inline-item disabled"><a>Last</a></li>
+                    <% } else { %>
+                        <li class="list-inline-item"><a href="/api/admin/api/articles/<%= pages %>">Last</a></li>
+                    <% } %>
+                </ul>
+<%}%>
+</div>
+<br/>
+<%- include('../shared/adminfooter.ejs') %>
+
+<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
