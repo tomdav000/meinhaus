@@ -1,6 +1,8 @@
 const express = require('express');
 const mongoose = require('mongoose');
 const Article = require('../models/Article');
+const keys = require('../config/keys')
+const stripe = require('stripe')(keys.stripeSecretKey);
 const {auth} = require('../config/auth');
 const moment = require('moment');
 const router = express.Router();
@@ -66,6 +68,49 @@ router.get('/:page',async(req,res)=>{
 		console.error(err);
 		res.status(500).send('Not Available...')
 	}
+})
+
+router.get('/api/store',(req,res)=>{
+	res.render('store', {
+		stripePublishableKey: keys.stripePublishableKey
+	});
+})
+
+router.post('/charge1', (req, res) => {
+  const amount = 3000;
+  
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer => stripe.charges.create({
+    amount,
+    description: 'Hammer Series 12 Week PDF Download',
+    currency: 'usd',
+    customer: customer.id
+  }))
+  .then(charge => res.render('success'));
+});
+
+
+router.post('/charge', (req, res) => {
+  const amount = 2500;
+  
+  stripe.customers.create({
+    email: req.body.stripeEmail,
+    source: req.body.stripeToken
+  })
+  .then(customer => stripe.charges.create({
+    amount,
+    description: 'PDF Download',
+    currency: 'usd',
+    customer: customer.id
+  }))
+  .then(charge => res.render('success'));
+});
+
+router.get('/api/success',(req,res)=>{
+	res.render('success');
 })
 
 router.get('/api/about',(req,res)=>{

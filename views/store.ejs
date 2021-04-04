@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang='en'>
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="preconnect" href="https://fonts.gstatic.com">
+	<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100&display=swap" rel="stylesheet">
+	<link rel="icon" href="/favicon.ico">
+    <link rel="apple-touch-icon" sizes="76x76" href="/apple-touch-icon.png">
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png">
+    <link rel="manifest" href="/site.webmanifest">
+    <link rel="mask-icon" href="/safari-pinned-tab.svg" color="#9c0202">
+    <meta name="msapplication-TileColor" content="#b91d47">
+    <meta name="theme-color" content="#ffffff">
+	<title>Store - Mein Haus</title>
+	<meta name="description" content="Mein Haus store features more in-depth training programs that specializes in increasing overall strength and conditioning.">
+	<script src="https://polyfill.io/v3/polyfill.min.js?version=3.52.1&features=fetch"></script>
+    <script src="https://js.stripe.com/v3/"></script>
+	<style>
+		.display{
+    		text-decoration: none;
+    		color: black;
+    		transition: color;
+    		transition-duration: 3s;
+    	}
+    	.display:hover{
+    		color: crimson;
+    	}
+    	.lineup{
+    		border-bottom: 4px solid rgba(50, 50, 50, .3);
+    		padding-top: 12px;
+    		width: 35%;
+    	}
+    	.desc{
+    		font-family: 'Barlow Condensed', sans-serif;
+    	}
+	</style>
+</head>
+<body>
+<%- include('./shared/header.ejs') %>
+<div>
+<div class="jumbotron">
+<img width="100%" src="/contact.png" alt="Please contact us if any situation arises that we can control. Mein Haus is about giving top notch quality to our base." />
+</div>
+</div>
+<div class="container">
+<br/>
+<h1 class="display lineup" style="padding-top: 5px;">Products</h1>
+<br/>
+<div class='row'>
+<div class="col-xs col-sm-6 col-md-6 col-lg-6">
+<br/>
+    <form action="/charge" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= stripePublishableKey %>"
+          data-amount="2500"
+          data-name="Bomb Squad: Bum Rush Da Spot"
+          data-description="6 Week Trainer PDF Download"
+          data-image="/BombSquad-PDF.jpg"
+          data-locale="auto">
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[0].style.display = 'none';
+        </script>
+      <img width="100%" src="/BombSquad-PDF.jpg" alt="Bomb Squad: Bum Rush Da Spot 6 Week Trainer PDF Download." class="img-fluid">
+      <br/> <br/>
+        <div class="text-center"><button type="submit" class="btn btn-outline-dark text-white btn-lg">$25.00</button></div>
+      </form>
+</div>
+
+
+
+<div class="col-xs col-sm-6 col-md-6 col-lg-6">
+<br/>
+    <form action="/charge1" method="POST">
+        <script
+          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
+          data-key="<%= stripePublishableKey %>"
+          data-amount="3000"
+          data-name="Hammer Series"
+          data-description="12 Week Strength and Conditioning Trainer PDF Download"
+          data-image="/BombSquad-PDF.jpg"
+          data-locale="auto">
+        </script>
+        <script>
+          // Hide default stripe button
+          document.getElementsByClassName('stripe-button-el')[1].style.display = 'none';
+        </script>
+      <img width="100%" src="/BombSquad-PDF.jpg" alt="Hammer Series PDF Download." class="img-fluid">
+      <br/> <br/>
+        <div class="text-center"><button type="submit" class="btn btn-outline-dark text-white btn-lg">$30.00</button></div>
+      </form>
+</div>
+</div>
+<br/>
+<p class="text-center"><a href="https://www.instagram.com/" target="_blank"><img style="width: 30px" src="/iconfinder_instagram_5367338.png" alt="Mein Haus link to instagram. Have a look!"></a><a href="https://www.tiktok.com/" target="_blank"><img style="width: 30px" src="/iconfinder_tiktok_5367362.png" alt="Mein Haus link to TikTok. Check us out!"></a><a href="mailto:thomas.junior.davis@gmail.com" target="_blank"><img style="width: 30px" src="/iconfinder_gmail_5367355.png" alt="Mein Haus E-Mail. Email us."></a><a href="https://www.substack.com/" target="_blank"><img style="width: 20px" src="/iconfinder_substack_5367411.png" alt="Mein Haus link to Substack. Subscribe and learn more about the Iron Citadel."></a></p>
+</div>
+<br/>
+<%- include('./shared/footer.ejs') %>
+<!-- Option 1: Bootstrap Bundle with Popper -->
+    <script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1" crossorigin="anonymous"></script>
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM" crossorigin="anonymous"></script>
+</body>
+</html>
