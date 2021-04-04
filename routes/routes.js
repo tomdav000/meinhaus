@@ -71,26 +71,8 @@ router.get('/:page',async(req,res)=>{
 })
 
 router.get('/api/store',(req,res)=>{
-	res.render('store', {
-		stripePublishableKey: keys.stripePublishableKey
-	});
+	res.render('store');
 })
-
-router.post('/api/charge', (req, res) => {
-  const amount = 2500;
-  
-  stripe.customers.create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken
-  })
-  .then(customer => stripe.charges.create({
-    amount,
-    description: 'PDF Download',
-    currency: 'usd',
-    customer: customer.id
-  }))
-  .then(charge => res.render('success'));
-});
 
 router.get('/api/success',(req,res)=>{
 	res.render('success');
