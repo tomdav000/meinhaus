@@ -51,7 +51,7 @@
 <div class='row'>
 <div class="col-xs col-sm-6 col-md-6 col-lg-6">
 <br/>
-    <form action="/charge" method="POST">
+    <form action="/api/charge" method="POST">
         <script
           src="https://checkout.stripe.com/checkout.js" class="stripe-button"
           data-key="<%= stripePublishableKey %>"
@@ -68,30 +68,6 @@
       <img width="100%" src="/BombSquad-PDF.jpg" alt="Bomb Squad: Bum Rush Da Spot 6 Week Trainer PDF Download." class="img-fluid">
       <br/> <br/>
         <div class="text-center"><button type="submit" class="btn btn-outline-dark text-white btn-lg">$25.00</button></div>
-      </form>
-</div>
-
-
-
-<div class="col-xs col-sm-6 col-md-6 col-lg-6">
-<br/>
-    <form action="/charge1" method="POST">
-        <script
-          src="https://checkout.stripe.com/checkout.js" class="stripe-button"
-          data-key="<%= stripePublishableKey %>"
-          data-amount="3000"
-          data-name="Hammer Series"
-          data-description="12 Week Strength and Conditioning Trainer PDF Download"
-          data-image="/BombSquad-PDF.jpg"
-          data-locale="auto">
-        </script>
-        <script>
-          // Hide default stripe button
-          document.getElementsByClassName('stripe-button-el')[1].style.display = 'none';
-        </script>
-      <img width="100%" src="/BombSquad-PDF.jpg" alt="Hammer Series PDF Download." class="img-fluid">
-      <br/> <br/>
-        <div class="text-center"><button type="submit" class="btn btn-outline-dark text-white btn-lg">$30.00</button></div>
       </form>
 </div>
 </div>

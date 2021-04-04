@@ -76,24 +76,7 @@ router.get('/api/store',(req,res)=>{
 	});
 })
 
-router.post('/charge1', (req, res) => {
-  const amount = 3000;
-  
-  stripe.customers.create({
-    email: req.body.stripeEmail,
-    source: req.body.stripeToken
-  })
-  .then(customer => stripe.charges.create({
-    amount,
-    description: 'Hammer Series 12 Week PDF Download',
-    currency: 'usd',
-    customer: customer.id
-  }))
-  .then(charge => res.render('success'));
-});
-
-
-router.post('/charge', (req, res) => {
+router.post('/api/charge', (req, res) => {
   const amount = 2500;
   
   stripe.customers.create({
