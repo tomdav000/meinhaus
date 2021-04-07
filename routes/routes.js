@@ -3,6 +3,9 @@ const mongoose = require('mongoose');
 const Article = require('../models/Article');
 const {auth} = require('../config/auth');
 const moment = require('moment');
+const Publishable_Key = 'pk_test_GNoY4oxkGQRiNy4eqDC3iKnv00fXwaheB6';
+const Secret_Key = 'sk_test_D6CWYXkw0cojSNcAgPE09qZz00nvL6l71V';
+const stripe = require('stripe')(Secret_Key);
 const router = express.Router();
 
 router.get('/greet',(req,res)=>{
@@ -69,8 +72,35 @@ router.get('/:page',async(req,res)=>{
 })
 
 router.get('/api/store',(req,res)=>{
-	res.render('store');
+	res.render('store',{key: Publishable_Key});
 })
+
+router.post('/payment', function(req, res){
+  
+    // Moreover you can take more details from user
+    // like Address, Name, etc from form
+    stripe.customers.create({
+        email: req.body.stripeEmail,
+        source: req.body.stripeToken
+    })
+    .then((customer) => {
+  
+        return stripe.charges.create({
+            amount: 3000,     // 30 Dollars
+            description: 'Muira Workout Programme',
+            currency: 'usd',
+            customer: customer.id
+        });
+    })
+    .then((charge) => {
+        res.render('success')  // If no error occurs
+    })
+    .catch((err) => {
+        res.send(err)       // If some error occurs
+    });
+})
+  
+
 
 router.get('/api/success',(req,res)=>{
 	res.render('success');
