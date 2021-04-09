@@ -6,6 +6,7 @@ const moment = require('moment');
 const Publishable_Key = 'pk_test_GNoY4oxkGQRiNy4eqDC3iKnv00fXwaheB6';
 const Secret_Key = 'sk_test_D6CWYXkw0cojSNcAgPE09qZz00nvL6l71V';
 const stripe = require('stripe')(Secret_Key);
+const products = require('../config/products');
 const router = express.Router();
 
 router.get('/greet',(req,res)=>{
@@ -72,11 +73,15 @@ router.get('/:page',async(req,res)=>{
 })
 
 router.get('/api/store',(req,res)=>{
-	res.render('store',{key: Publishable_Key});
+	res.render('store',{products:products});
+})
+
+router.get('/api/store/:id',(req,res)=>{
+	const product = products.find(product => product.id === req.params.id);
+	res.render('product',{key: Publishable_Key,product: product})
 })
 
 router.post('/payment', function(req, res){
-  
     // Moreover you can take more details from user
     // like Address, Name, etc from form
     stripe.customers.create({
@@ -86,8 +91,8 @@ router.post('/payment', function(req, res){
     .then((customer) => {
   
         return stripe.charges.create({
-            amount: 3000,     // 30 Dollars
-            description: 'Muira Workout Programme',
+            amount: 2500,    
+            description: req.body.description,
             currency: 'usd',
             customer: customer.id
         });
