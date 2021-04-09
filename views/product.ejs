@@ -5,6 +5,7 @@
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Courier+Prime:ital@1&display=swap" rel="stylesheet">
+	<link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@100&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
 	<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
 	<link rel="preconnect" href="https://fonts.gstatic.com">
@@ -62,6 +63,9 @@
     	.MeinBox:hover{
     		border:  3px solid crimson;
     	}
+    	.desc{
+    		font-family: 'Barlow Condensed', sans-serif;
+    	}
 	</style>
 </head>
 <body>
@@ -69,9 +73,10 @@
 <br/>
 <br/>
 <div class="container">
+<div class="text-center"><a class="display" href="/api/store">BACK</a></div>
 <br/>
-<h2 class="text-center information"><%= product.name %> | <%= product.description %></h2>
-<br/>
+<div class="row">
+<div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 <div class="text-center">
  	<img  width="50%" src="<%= product.image %>" alt="<%= product.description %>">
 </div>
@@ -90,9 +95,20 @@
           data-locale="auto" >
         </script>
     </form>
+</div>
+<div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 <br/>
 <br/>
-<hr/>
+<h2 class="text-center information"><%= product.name %></h2>
+<p class="desc"><%= product.description %></p>
+<br/>
+<h6 class="desc"><%= product.title %></h6>
+<p class="desc"><%= product.info %></p>
+</div>
+<br/>
+<br/>
+
+</div>
 </div>
 <br/>
 <br/>
