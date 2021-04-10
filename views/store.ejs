@@ -58,6 +58,7 @@
       <a href="/api/store/<%= products[i].id %>"><img class="card-img-top" style="border-radius: 0 ;" src="<%= products[i].image%>" alt="<%= products[i].description%>"></a>
       <div class="card-body">
         <h5 class="card-title desc"><%= products[i].name %></h5>
+        <h6 class="card-title desc">$<%= products[i].cost %></h6>
         <p class="card-text text-truncate desc"><%= products[i].description %></p>
       </div>
       <div class="card-footer bg-transparent">
