@@ -21,6 +21,10 @@ const ArticleSchema = new mongoose.Schema({
 	video:{
 		type: String,
 		required: false
+	},
+	postedBy:{
+		type: mongoose.Schema.Types.ObjectId,
+		ref:'User'
 	}
 },
 {

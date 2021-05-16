@@ -83,6 +83,14 @@
 </div>
 <br/>
 <h1 class="text-center display" style="padding-top: 5px;"><%= article.title %></h1>
+<% if(article.postedBy) { %>
+<div class="text-center">
+	<dfn class="date display">Article Posted By <%= article.postedBy.name %> 
+    </dfn>
+</div>
+<br/>
+<br/>
+<% } %>
 <% if(article.training === true) { %>
 	<p class="text-center"><img style="margin-top: 10px; margin-bottom: 4px;" width="30" src="/dumbbell_logo-MH.png">
 		<br/><dfn>HARDCORE FITNESS</dfn></p>

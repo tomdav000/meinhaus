@@ -120,7 +120,8 @@ router.post('/articles',upload.fields([{name: 'image'},{name: 'video'}]),auth,as
 			training: req.body.training,
 			link: req.body.link,
 			image: req.files.image[0].path,
-			video: req.files.video[0].path
+			video: req.files.video[0].path,
+			postedBy: req.body.postedBy
 		});
 		await newArticle.save();
 		res.redirect('/api/admin/api/articles')
@@ -130,7 +131,8 @@ router.post('/articles',upload.fields([{name: 'image'},{name: 'video'}]),auth,as
 				title: req.body.title,
 				description: req.body.description,
 				training: req.body.training,
-				link: req.body.link
+				link: req.body.link,
+				postedBy: req.body.postedBy
 			});
 			await newArticle.save();
 			res.status(200).redirect('/api/admin/api/articles')

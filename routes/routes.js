@@ -124,7 +124,7 @@ router.get('/api/downloads',(req,res)=>{
 })
 
 router.get('/articles/:id',async(req,res)=>{
-	const article = await Article.findById(req.params.id);
+	const article = await Article.findById(req.params.id).populate('postedBy');
 	res.render('article',{article: article, moment:moment});
 })
 
