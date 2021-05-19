@@ -37,7 +37,7 @@ if(process.env.PROD_ENV === 'production'){
 	app.use(express.static('client/build'))
 	const path = require('path')
 	app.use('*',(req,res)=>{
-		res.sendFile(path.resolve('client','build','index.html'))
+		res.sendFile(path.resolve('client','build','public/index.html'))
 	})
 }
 
