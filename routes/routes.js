@@ -15,8 +15,8 @@ router.get('/greet',(req,res)=>{
 
 router.get('/',async(req,res)=>{
 	try{
-		const perPage = 6;
-		const page = req.params.page;
+		const perPage = 15;
+		const page = req.params.page || 1;
 
 		if(req.query.search){
 			const regex = new RegExp(escapeRegex(req.query.search),'gi');
@@ -52,8 +52,8 @@ router.get('/',async(req,res)=>{
 
 router.get('/:page',async(req,res)=>{
 	try{
-		const perPage = 6;
-		const page = req.params.page;
+		const perPage = 15;
+		const page = req.params.page || 1;
 		
 		await Article.find({}).sort({createdAt: -1}).skip((perPage * page) - perPage)
 		.limit(perPage).exec(function(err, articles){
