@@ -79,22 +79,12 @@
 <div class="col-lg-8 col-md-8 col-sm-8 col-xs-8">
 <div class="text-center">
  	<img  width="50%" src="<%= product.image %>" alt="<%= product.description %>">
+   <br/>
+   <br/>
+   <script src="https://gumroad.com/js/gumroad.js"></script>
+   <a class="gumroad-button" href="<%= product.link%>" target="_blank"><%= product.action%></a>
 </div>
 <br/>
-<form align="center" action="/payment" method="POST">
-	<input hidden type='input' name='description' value="<%= product.description%>"/>
-       <script 
-          src="//checkout.stripe.com/v2/checkout.js"
-          class="stripe-button"
-          data-key="<%= key %>"
-          data-amount="2500"
-          data-currency="usd"
-          data-name="<%= product.name %>"
-          data-description="<%= product.description %>"
-          data-image="<%= product.image %>"
-          data-locale="auto" >
-        </script>
-    </form>
 </div>
 <div class="col-lg-4 col-md-4 col-sm-4 col-xs-4">
 <br/>
@@ -107,6 +97,7 @@
 <h5 class="desc text-center">  $<%= product.cost %></h5>
 </div>
 <br/>
+
 <br/>
 
 </div>

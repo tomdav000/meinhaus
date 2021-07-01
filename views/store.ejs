@@ -45,14 +45,13 @@
 </div>
 </div>
 <div class="container">
+<br/>
+<h1 class="display lineup" style="padding-top: 5px;">Products</h1>
 <div class="row">
 <br/>
 
-<h1>Products</h1>
-<hr/>
-
 <% for (var i = 0; i < products.length; i++) { %>
-    <div class="col-sm-6 col-lg-4 col-xs-2 no-gutters text-center">
+    <div class="col-sm-6 col-lg-6 col-xs-2 no-gutters text-center">
     <div class="card w-100  text-center" style="border: none; border-radius: 0 !important;">
    
       <a href="/api/store/<%= products[i].id %>"><img class="card-img-top" style="border-radius: 0 ;" src="<%= products[i].image%>" alt="<%= products[i].description%>"></a>
@@ -68,7 +67,7 @@
    </div>
    <br/>
 <% } %>
-
+<br/>
 </div>
 </div>
 
