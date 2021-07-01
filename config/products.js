@@ -13,7 +13,7 @@ const products = [
 	{ "id":"1",
 	  "name":"The Smith: Hammer Series, Volume One",
 	  "description":"The Smith: Hammer Series is a highly intensive 65 day workout routine that caters to the true nature of the Mein Haus supporter, pushing yourself constantly, knowing your body and when to rest, and wanting nuance to your programming. The Smith is a bit unconventional in the way it is listed, but its results are proven.",
-	  "cost":"10.00",
+	  "cost":"14.00",
 	  "image":"/hammer.jpg",
 	  "title":"INSTANT DOWNLOAD",
 	  "info":"Your files will be available to download once payment is confirmed. Please contact me if you have any problems with your order.",
