@@ -1,17 +1,14 @@
-const mongoose = require('mongoose');
-const MONGODB = process.env.MONGODB
+require('dotenv').config();
+const mysql = require('mysql');
+const connDB = mysql.createConnection({
+	user:process.env.ROOT,
+	host:process.env.HOST,
+	database:process.env.DB,
+	password:process.env.PASS
+});
+connDB.connect((err)=>{
+	if(err) throw err;
+	console.log('DB is now connected.')
+});
 
-const connectDB = async ()=>{
-	try{
-		mongoose.connect(MONGODB,{
-			useNewUrlParser: true,
-			useUnifiedTopology: true,
-			useFindAndModify: false
-		}).then(console.log('DB is connected')).catch(err=>()=>console.log('DB not Connected',err));
-	} catch(err){
-		console.error(err);
-		console.log('Database is not connected...')
-	}
-}
-
-module.exports = connectDB;
+module.exports = connDB;
